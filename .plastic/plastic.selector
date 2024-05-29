@@ -1,0 +1,4 @@
+repository "Sound_of_the_Crused@Teman_A@cloud"
+  path "/"
+    br "/main"
+    co "/main"

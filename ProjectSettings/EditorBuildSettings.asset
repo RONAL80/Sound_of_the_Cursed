@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Dialogues/OpeningScene.unity
     guid: 42c624d7e801b394792637d7b6b4f660
   - enabled: 1
-    path: Assets/progres.unity
+    path: Assets/Scenes/progres.unity
     guid: 3495330b678bd894f8a216375b08c53b
   - enabled: 1
     path: Assets/Scenes/Dialogues/GameDialogStart1.unity

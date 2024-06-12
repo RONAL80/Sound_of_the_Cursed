@@ -52,5 +52,12 @@ public class tombol : MonoBehaviour
         // Pastikan alpha mencapai targetAlpha
         screenFade.alpha = targetAlpha;
         SceneManager.LoadScene(scene);
+        isClicked = false;
+    }
+
+    //create function to exit game
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

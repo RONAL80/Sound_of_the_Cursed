@@ -31,7 +31,7 @@ public class tombol : MonoBehaviour
     public void pindahScene(){
         if (isClicked == false) {
             isClicked = true;
-            StartCoroutine(toGamePlay("OpeningScene"));
+            StartCoroutine(toGamePlay("NewGame"));
         }
     }
 
@@ -41,10 +41,10 @@ public class tombol : MonoBehaviour
         float startAlpha = screenFade.alpha; // Alpha awal
         float targetAlpha = 1f; // Alpha tujuan
 
-        while (elapsedTime < 2f) // Durasi perubahan alpha
+        while (elapsedTime < 1f) // Durasi perubahan alpha
         {
             // Menggunakan fungsi Lerp untuk mengubah alpha secara perlahan
-            screenFade.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / 2f);
+            screenFade.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / 1f);
             elapsedTime += Time.deltaTime; // Menambah waktu yang sudah berlalu
             yield return null; // Menunggu frame berikutnya
         }

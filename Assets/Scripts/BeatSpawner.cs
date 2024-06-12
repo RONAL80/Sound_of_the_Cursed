@@ -11,7 +11,7 @@ public class BeatSpawner : MonoBehaviour
     public Musics musics;
     public Lines Lines;
     List<Transform> lines = new List<Transform>();
-    float LineSpeed = 60f;
+    float LineSpeed = 80f;
     float BeatSpawnSpeed = 0f;
     [SerializeField]
     string LineToSpeedUp = "";
@@ -42,12 +42,12 @@ public class BeatSpawner : MonoBehaviour
         int holdTime = 0;
         string simultaneousNotes = "";
         float delay = 0;
-        BeatSpawnSpeed = 0.4f;
+        BeatSpawnSpeed = 0.3f;
         foreach (char beat in musics.Beats)
         {
             if (beat == '#')
             {
-                yield return new WaitForSeconds(BeatSpawnSpeed - 0.05f);
+                yield return new WaitForSeconds(BeatSpawnSpeed);
                 continue;
             }
             if (beat == '(')

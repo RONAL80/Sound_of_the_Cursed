@@ -12,9 +12,7 @@ public class Beat : MonoBehaviour
         goodCollider, 
         perfectCollider;
 
-    bool isOnPerfect = false,
-        isOnGood = false;
-
+    
     void Start()
     {
         LineParent = this.transform.GetComponentInParent<Line>();

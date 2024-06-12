@@ -123,7 +123,7 @@ public class openingSceneScript : MonoBehaviour
         // Pastikan alpha mencapai targetAlpha
         screenFade.alpha = targetAlpha;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("GameDialogStart1");
+        SceneManager.LoadScene("StageSelect");
     }
 
     IEnumerator startFade()

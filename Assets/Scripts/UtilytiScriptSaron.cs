@@ -24,7 +24,7 @@ public class UtilytiScriptSaron : MonoBehaviour
     public SpriteRenderer CounterSign;
     public List<Sprite> CounterSprites;
     public GameObject LogoGameStart;
-
+    public int superTimer;
     private int timer = 3;
     // Start is called before the first frame update
     void Start()
@@ -83,6 +83,31 @@ public class UtilytiScriptSaron : MonoBehaviour
             Time.timeScale = isPaused ? 0f : 1f;
         }
     }
+    public void resumeGame()
+    {
+        if(isPaused == true)
+        {
+            isPaused = !isPaused;
+            PauseScreen.SetActive(isPaused);
+            Time.timeScale = isPaused ? 0f : 1f;
+        }
+    }
+    public void QuitGame()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    IEnumerator timerToEnd()
+    {
+        while (superTimer <= 104)
+        {
+            superTimer += 1;
+            yield return new WaitForSeconds(1f);
+        }
+        SceneManager.LoadScene("StageSelect");
+    }
 
     private void hideSaronOnStart()
     {
@@ -126,6 +151,7 @@ public class UtilytiScriptSaron : MonoBehaviour
         PlayerPrefs.SetString("GAMESTART", "TRUE");
         StartCoroutine(Lines.startSpawn());
         yield return new WaitForSeconds(2.5f);
+        StartCoroutine(timerToEnd());
         StartCoroutine(healthPoint.selfHealthReducer());
     }
 }

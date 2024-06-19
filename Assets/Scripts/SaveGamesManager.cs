@@ -55,7 +55,7 @@ public class SaveGamesManager : MonoBehaviour
     public void CreateSaveGame(string GameMode)
     {
         NewPlayerName = InputPlayerName.text;
-        string saveData = $"{NewPlayerName}|Stage Completed: 0/0|Mode Selected: {GameMode}";
+        string saveData = $"{NewPlayerName}|Stage Completed: 0/5|Mode Selected: {GameMode}";
         string saveName = "PlayerSave" + SlotNumber.ToString();
 
         if (!SaveNames.Contains(saveName))
@@ -69,7 +69,7 @@ public class SaveGamesManager : MonoBehaviour
         SaveSlots[SlotNumber].GetComponentsInChildren<TextMeshProUGUI>()[1].text = saveData.Split('|')[1];
         SaveSlots[SlotNumber].GetComponentsInChildren<TextMeshProUGUI>()[2].text = saveData.Split('|')[2];
         InputPlayerName.text = "";
-        StartCoroutine(EnterTheGame());
+        StartCoroutine(EnterTheGame(saveName));
     }
 
     public void isOverride(int slotnum)
@@ -89,7 +89,7 @@ public class SaveGamesManager : MonoBehaviour
         }
     }
 
-    IEnumerator EnterTheGame()
+    IEnumerator EnterTheGame(string saveName)
     {
         float elapsedTime = 0f;
         float startAlpha = screenFade.alpha; // Alpha awal
@@ -105,6 +105,7 @@ public class SaveGamesManager : MonoBehaviour
 
         // Pastikan alpha mencapai targetAlpha
         screenFade.alpha = targetAlpha;
+        PlayerPrefs.SetString("PlayingAs", saveName);
         SceneManager.LoadScene("OpeningScene");
     }
     public void BackToMainMenu()

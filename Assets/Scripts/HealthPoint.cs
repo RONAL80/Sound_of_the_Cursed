@@ -42,15 +42,15 @@ public class HealthPoint : MonoBehaviour
 
     public void increaseByScoreType(string scoreType)
     {
-        if (scoreType != null && scoreType == "Good")
+        if (scoreType != null && scoreType == "2")
         {
             HealthObject.fillAmount += 0.01f;
         }
-        else if (scoreType != null && scoreType == "Perfect")
+        else if (scoreType != null && scoreType == "1")
         {
-            HealthObject.fillAmount += 0.03f;
+            HealthObject.fillAmount += 0.02f;
         }
-        else if (scoreType != null && scoreType == "Miss")
+        else if (scoreType != null && scoreType == "0")
         {
             HealthObject.fillAmount -= 0.01f;
         }

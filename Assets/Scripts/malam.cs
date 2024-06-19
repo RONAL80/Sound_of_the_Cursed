@@ -8,7 +8,7 @@ public class malam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerPrefs.SetInt("LevelDifficulty", 0);
     }
     //malam ke pagi
     
@@ -22,12 +22,14 @@ public class malam : MonoBehaviour
         {
            malamku.SetActive(true);
            siang.SetActive(false);
+            PlayerPrefs.SetInt($"LevelDifficulty{PlayerPrefs.GetString("PlayingAs")}", 1);
         }
         //malam ke pagi
          else if (Input.GetKey(KeyCode.W))
         {
            malamku.SetActive(false);
            siang.SetActive(true);
+            PlayerPrefs.SetInt($"LevelDifficulty{PlayerPrefs.GetString("PlayingAs")}", 0);
         }
     }
 }

@@ -18,18 +18,19 @@ public class UtilytiScriptSaron : MonoBehaviour
     public GameObject DeathScreen;
     public GameObject PauseScreen;
     public CanvasGroup screenFade;
-    public Lines Lines;
     public HealthPoint HealthPoint;
     bool isPaused = false;
     public SpriteRenderer CounterSign;
     public List<Sprite> CounterSprites;
     public GameObject LogoGameStart;
-    public int superTimer;
     private int timer = 3;
+    public GameObject Pad;
+    public GameObject[] enemies;
     // Start is called before the first frame update
     void Start()
     {
         PlayerPrefs.SetString("GAMESTART", "FALSE");
+        initializeEnemyByLevel();
         StartCoroutine(startcount());
     }
 
@@ -45,17 +46,7 @@ public class UtilytiScriptSaron : MonoBehaviour
         {
             hideSaronOnStart();
         }
-        //if (Enemy && Player)
-        //{
-          //  if(Player.transform.position.x < -6.5f)
-            //{
-              //  Player.transform.position += new Vector3(2f * Time.deltaTime, 0f, 0f);
-            //}
-            //if (Enemy.transform.position.x > 6.5f)
-            //{
-              //  Enemy.transform.position -= new Vector3(2f * Time.deltaTime, 0f, 0f);       
-            //}
-        //}
+        
         if(healthPoint.HealthObject.fillAmount <= 0) {
             DeathScreen.SetActive(true);
             Time.timeScale = 0f;
@@ -66,6 +57,15 @@ public class UtilytiScriptSaron : MonoBehaviour
         }
     }
 
+    void initializeEnemyByLevel()
+    {
+        foreach(GameObject enm in enemies)
+        {
+            enm.SetActive(false);
+        }
+        enemies.ElementAt(PlayerPrefs.GetInt($"LevelGame{PlayerPrefs.GetString("PlayingAs")}")).SetActive(true);
+        GameObject.Find("enemyName").GetComponent<TextMeshProUGUI>().text = enemies.ElementAt(PlayerPrefs.GetInt($"LevelGame{PlayerPrefs.GetString("PlayingAs")}")).name;
+    }
     private void RestartGame()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -99,15 +99,6 @@ public class UtilytiScriptSaron : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    IEnumerator timerToEnd()
-    {
-        while (superTimer <= 104)
-        {
-            superTimer += 1;
-            yield return new WaitForSeconds(1f);
-        }
-        SceneManager.LoadScene("StageSelect");
-    }
 
     private void hideSaronOnStart()
     {
@@ -118,7 +109,6 @@ public class UtilytiScriptSaron : MonoBehaviour
     {
         while(timer > 0)
         {
-            //StartCounter.transform.GetComponent<TextMeshProUGUI>().text = timer.ToString();
             CounterSign.sprite = CounterSprites.FirstOrDefault(sprite => sprite.name.Contains(timer.ToString()));
             timer--;
             yield return new WaitForSeconds(1f);
@@ -149,9 +139,23 @@ public class UtilytiScriptSaron : MonoBehaviour
         // Pastikan alpha mencapai targetAlpha
         screenFade.alpha = targetAlpha;
         PlayerPrefs.SetString("GAMESTART", "TRUE");
-        StartCoroutine(Lines.startSpawn());
         yield return new WaitForSeconds(2.5f);
-        StartCoroutine(timerToEnd());
         StartCoroutine(healthPoint.selfHealthReducer());
+    }
+
+    public IEnumerator startFadeIn()
+    {
+        float elapsedTime = 0f;
+        float startAlpha = screenFade.alpha; // Alpha awal
+        float targetAlpha = 1f; // Alpha tujuan
+        while (elapsedTime < 2f) // Durasi perubahan alpha
+        {
+            screenFade.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / 2f);
+            elapsedTime += Time.deltaTime; // Menambah waktu yang sudah berlalu
+            yield return null; // Menunggu frame berikutnya
+        }
+        screenFade.alpha = targetAlpha;
+        PlayerPrefs.SetInt($"DialogPart{PlayerPrefs.GetString("PlayingAs")}", 1);
+        SceneManager.LoadScene("GameDialogStart1");
     }
 }

@@ -57,7 +57,7 @@ public class dalogue1 : MonoBehaviour
                     {
                         "Freeze!",
                         "State your name and reason here!",
-                        "MC sir, and… Wait…",
+                        "Didung sir, and… Wait…",
                         "Ha! Gotcha!",
                         "Wait… you are…",
                         "Tuyul!",
@@ -72,10 +72,10 @@ public class dalogue1 : MonoBehaviour
                         "Uncle, what are you going to do uncle?",
                         "Enough of your game!",
                         "You will answer my question from now on!",
-                        "Tuyul:”Well, that was fun MC",
-                        "Tuyul:”But I suggest you move quickly, before it’s too late",
+                        "Well, that was fun Didung",
+                        "But I suggest you move quickly, before it’s too late",
                         "What do you mean? too late for what?",
-                        "Well, thank you for playing with me for the last time MC"
+                        "Well, thank you for playing with me for the last time Didung"
                     }
                 }
             }
@@ -139,7 +139,7 @@ public class dalogue1 : MonoBehaviour
                         "Is this even a part of the village?",
                         "Who’s there?! Show yourself!",
                         "Heh heh heh… A little human who dare to enter my territory, who are you?",
-                        "My name is MC. And I come here to  cleanse the curse from the village.",
+                        "My name is Didung. And I come here to  cleanse the curse from the village.",
                         "Hoo… a little human want to lift a curse?",
                         "Come back in 100 years and maybe you can start to try to lift the curse",
                         "Ha ha ha, you have a good sense of humor Genderuwo!",

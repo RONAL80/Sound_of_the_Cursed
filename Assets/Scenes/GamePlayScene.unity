@@ -2925,6 +2925,7 @@ RectTransform:
   - {fileID: 1040725953}
   - {fileID: 1038793006}
   - {fileID: 54662281}
+  - {fileID: 1477598267}
   - {fileID: 2062608077}
   - {fileID: 621024527}
   - {fileID: 1847666415}
@@ -2933,7 +2934,6 @@ RectTransform:
   - {fileID: 1432371318}
   - {fileID: 1386586387}
   - {fileID: 250206488}
-  - {fileID: 1477598267}
   - {fileID: 1816915590}
   - {fileID: 2040552422}
   m_Father: {fileID: 519420032}

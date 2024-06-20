@@ -25,8 +25,7 @@ public class tombol : MonoBehaviour
         if (isContinueClicked == false)
         {
             isContinueClicked = true;
-            PlayerPrefs.DeleteAll();
-            //StartCoroutine(toGamePlay("GamePlayScene"));
+            StartCoroutine(toGamePlay("ContinueGame"));
         }
     }
     public void NewGame(){

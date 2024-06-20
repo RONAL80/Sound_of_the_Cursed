@@ -22,7 +22,7 @@ public class Karakter : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.HasKey($"LastPosLevel{PlayerPrefs.GetString("PlayingAs")}"))
+        if (PlayerPrefs.HasKey($"LastPosLevel{PlayerPrefs.GetString("PlayingAs")}") && PlayerPrefs.GetString($"LastPosLevel{PlayerPrefs.GetString("PlayingAs")}") != "")
         {
             currentIndex = PlayerPrefs.GetInt($"LevelGame{PlayerPrefs.GetString("PlayingAs")}");
             string[] LastPos = PlayerPrefs.GetString($"LastPosLevel{PlayerPrefs.GetString("PlayingAs")}").Split(":");

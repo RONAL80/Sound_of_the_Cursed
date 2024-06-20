@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class BeatRef : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public List<AudioClip> audioClips = new List<AudioClip>();
     void Start()
     {
         
@@ -17,6 +16,16 @@ public class BeatRef : MonoBehaviour
     {
         
     }
+
+    public void playNoteAudio(int lineNum)
+    {
+        GameObject audioObject = new GameObject($"Audio-{lineNum}");
+        AudioSource audioSource = audioObject.AddComponent<AudioSource>();
+        audioObject.transform.parent = GameObject.Find("AudioPlaying").transform;
+        audioSource.clip = audioClips[lineNum];
+        audioSource.Play();
+        Destroy(audioObject, 1f);
+    }
     private void OnTriggerEnter2D(Collider2D target)
     {
         if (target.name.Contains("Perfect"))
@@ -25,7 +34,12 @@ public class BeatRef : MonoBehaviour
             string[] Score = NameParts[5].Split(':');
             Score[1] = "1";
             NameParts[5] = string.Join(':', Score);
-            transform.parent.name = string.Join(',', NameParts);   
+            transform.parent.name = string.Join(',', NameParts);
+
+            //temporary
+            //playNoteAudio(int.Parse(NameParts[0]));
+            //transform.parent.
+
         }
         else if (target.name.Contains("Good"))
         {
@@ -46,7 +60,7 @@ public class BeatRef : MonoBehaviour
             }
             else
             {
-                GameObject.Find("HealthPoint").GetComponent<HealthPoint>().increaseByScoreType("2");
+                GameObject.Find("HealthPoint").GetComponent<HealthPoint>().increaseByScoreType("0");
                 Destroy(transform.parent.gameObject);
                 var spawner = GameObject.Find("Pad").GetComponent<Spawner>();
                 spawner.spawnedBeats[int.Parse(transform.parent.name.Split(',').First())].RemoveAt(0);

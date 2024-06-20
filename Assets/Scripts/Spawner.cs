@@ -66,7 +66,7 @@ public class Spawner : MonoBehaviour
     {
         while (true && beats != null)
         {
-            beats.transform.position -= new Vector3(3f * Time.deltaTime, 0f, 0f);
+            beats.transform.position -= new Vector3(2.8f * Time.deltaTime, 0f, 0f);
             yield return new WaitForSeconds(Time.deltaTime);
         }
     }

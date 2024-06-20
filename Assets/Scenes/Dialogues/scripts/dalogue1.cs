@@ -349,17 +349,18 @@ public class dalogue1 : MonoBehaviour
         {
             if(DialogPart == 0)
             {
-                StartCoroutine(toGamePlay());
+                StartCoroutine(goToScene("GamePlayScene"));
             }
             if(DialogPart == 1)
             {
-                if(level == 4)
+                if (level == 4)
                 {
-                    SceneManager.LoadScene("MainMenu");
+                    PlayerPrefs.SetString("GameFinished", PlayerPrefs.GetString("PlayingAs"));
+                    StartCoroutine(goToScene("MainMenu"));
                 }
                 else
                 {
-                    SceneManager.LoadScene("StageSelect");
+                    StartCoroutine(goToScene("OpeningScene"));
                 }
             }
         }
@@ -382,7 +383,7 @@ public class dalogue1 : MonoBehaviour
 
         dialogText.text = dialogues[level][DialogPart][dialognum];
     }
-    IEnumerator toGamePlay()
+    IEnumerator goToScene(string scene)
     {
         yield return new WaitForSeconds(1f); // Menunggu selama 2 detik
         float elapsedTime = 0f;
@@ -400,7 +401,7 @@ public class dalogue1 : MonoBehaviour
         // Pastikan alpha mencapai targetAlpha
         screenFade.alpha = targetAlpha;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("GamePlayScene");
+        SceneManager.LoadScene(scene);
     }
 
     IEnumerator startFade()

@@ -57,7 +57,6 @@ public class SaveGamesManager : MonoBehaviour
         NewPlayerName = InputPlayerName.text;
         string saveData = $"{NewPlayerName}|Stage Completed: 0/5|Mode Selected: {GameMode}";
         string saveName = "PlayerSave" + SlotNumber.ToString();
-
         if (!SaveNames.Contains(saveName))
         {
             SaveNames.Add(saveName);
@@ -105,11 +104,24 @@ public class SaveGamesManager : MonoBehaviour
 
         // Pastikan alpha mencapai targetAlpha
         screenFade.alpha = targetAlpha;
+
         PlayerPrefs.SetString("PlayingAs", saveName);
+        PlayerPrefs.SetInt($"LevelGame{PlayerPrefs.GetString("PlayingAs")}", 0);
+        PlayerPrefs.SetInt($"LevelDifficulty{PlayerPrefs.GetString("PlayingAs")}", 0);
+        PlayerPrefs.SetString($"LastPosLevel{PlayerPrefs.GetString("PlayingAs")}", "");
+        PlayerPrefs.SetInt($"DialogPart{PlayerPrefs.GetString("PlayingAs")}", 0);
+        PlayerPrefs.SetInt($"NumDialog{PlayerPrefs.GetString("PlayingAs")}", 0);
+
         SceneManager.LoadScene("OpeningScene");
     }
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ContinueGame(int saveSlot)
+    {
+        PlayerPrefs.SetString("PlayingAs", $"PlayerSave{saveSlot}");
+        SceneManager.LoadScene("StageSelect");
     }
 }
